@@ -15,7 +15,7 @@ require("modules.env")
 require("modules.lookAndFeel")
 require("modules.misc")
 require("modules.input")
-require("modules.keybinds")
+require("modules.keybindings")
 
 
 -----------------------
