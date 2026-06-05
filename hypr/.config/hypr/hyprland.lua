@@ -31,7 +31,7 @@ hl.monitor({
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "hyprlauncher"
-local browser = "zen"
+local browser     = "zen"
 
 -------------------
 ---- AUTOSTART ----
