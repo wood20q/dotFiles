@@ -3,7 +3,7 @@
 /* -- Global rules -- */
 * {
   border: none;
-  font-family: "JetbrainsMono Nerd Font";
+  font-family: "JetbrainsMono Nerd Font Mono";
   font-size: 15px;
   min-height: 10px;
 }
@@ -26,8 +26,10 @@ window#waybar.hidden {
 #idle_inhibitor,
 #pulseaudio,
 #pulseaudio-slider,
+#custom-archicon,
 #network {
-  color: #161320;
+  color: #b6aecf;
+  background: #2a2333;
   margin-top: 6px;
   margin-bottom: 6px;
   padding-left: 10px;
@@ -58,30 +60,10 @@ window#waybar.hidden {
 /* Modules left */
 #custom-archicon {
   font-size: 20px;
-  color: #89B4FA;
-  background: #161320;
+  color: #e1ddf0;
   padding-right: 17px;
 }
 
-#clock {
-  background: #ABE9B3;
-}
-
-#cpu {
-  background: #96CDFB;
-}
-
-#memory {
-  background: #DDB6F2;
-}
-
-#disk {
-  background: #F5C2E7;
-}
-
-#temperature {
-  background: #F8BD96;
-}
 
 /* Modules center */
 #workspaces {
@@ -107,7 +89,8 @@ window#waybar.hidden {
   text-shadow: 0 0 4px #ABE9B3;
 }
 
-#workspaces button:hover {
+#workspaces button:hover {	
+  transition: 0.5s;
   color: #89B4FA;
 }
 
@@ -137,27 +120,31 @@ window#waybar.hidden {
 }
 
 #idle_inhibitor {
-  background: #B5E8E0;
   padding-right: 15px;
 }
 
 #pulseaudio {
   min-width: 55px;
-  color: #1A1826;
-  background: #F5E0DC;
 }
 
 #pulseaudio-slider {
-  color: #1A1826;
-  background: #E8A2AF;
   min-width: 50px;
 }
 
-#pulseaudio-slider slider {}
+#pulseaudio-slider slider {
+  background: #e1ddf0;
+  border: blue;
+}
 
+#pulseaudio-slider trough {
+  background: #3a2f4a;
+}
+
+#pulseaudio-slider highlight {
+  background: #b6aecf;
+}
 
 #network {
-  background: #CBA6F7;
   padding-right: 13px;
 }
 
