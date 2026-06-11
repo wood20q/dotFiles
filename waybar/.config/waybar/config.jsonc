@@ -14,6 +14,7 @@
     "clock"
   ],
   "modules-right": [
+    "hyprland/submap",
     "group/volume",
     "network",
     "bluetooth"
@@ -42,6 +43,11 @@
   },
 
   /* === Modules Right === */
+  "hyprland/submap": {
+    "format": "{}",
+    "max-length": 8,
+    "tooltip": false
+  },
   "pulseaudio": {
     "format": "{volume}% {icon} ",
     "format-bluetooth": "{volume}% {icon} ",

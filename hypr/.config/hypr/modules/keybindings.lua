@@ -81,3 +81,25 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
+
+hl.bind(secondMod .. " + P", hl.dsp.submap("⏻"))
+
+hl.define_submap("⏻", function()
+  -- suspend
+  hl.bind("s", function()
+    hl.dispatch(hl.dsp.exec_cmd("systemctl suspend"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- shutdown
+  hl.bind("p", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'systemctl poweroff'"))
+
+  -- reboot
+  hl.bind("r", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'systemctl reboot'"))
+
+  -- logout
+  hl.bind("l", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'loginctl terminate-user $USER'"))
+
+  -- reset
+  hl.bind("escape", hl.dsp.submap("reset"))
+end)

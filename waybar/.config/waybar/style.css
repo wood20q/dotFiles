@@ -1,5 +1,6 @@
 @define-color text rgba(255, 255, 255, 1);
 @define-color highlighted-text rgba(0, 0, 0, 1);
+@define-color urgent rgba(180, 30, 15, 1);
 @define-color highlight rgba(117, 241, 250, 1);
 @define-color dark-9 rgba(24, 24, 27, 0.8);
 @define-color dark-8 rgba(39, 39, 42, 1);
@@ -20,6 +21,7 @@ window#waybar {
 
 /* Global */
 #clock,
+#submap,
 #volume,
 #network,
 #bluetooth {
@@ -29,6 +31,11 @@ window#waybar {
   margin: 5px 10px 5px 0px;
 }
 
+#workspace button.urgent,
+#submap {
+  background: @urgent;
+  color: @highlighted-text;
+}
 
 /* Workspace settings */
 #workspaces button {
