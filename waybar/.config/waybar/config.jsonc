@@ -23,6 +23,7 @@
   /* === Modules Left === */
   "hyprland/workspaces": {
     "format": "{name}",
+    "show-special": true,
     "persistent-workspaces": {
       "*": 5
     }
