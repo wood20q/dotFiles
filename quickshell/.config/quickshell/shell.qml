@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell.Hyprland
+import Quickshell.Networking
 import QtQuick
 import QtQuick.Layouts
 
@@ -26,6 +27,10 @@ PanelWindow {
 
   // submap vars
   property string activeSubmap: ""
+
+  // Networking
+  property string networkName: "unknown"
+
 
   // Processes
   // CPU
@@ -155,6 +160,11 @@ PanelWindow {
         repeat: true
         onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd | HH:mm")
       }
+
+      MouseArea {
+        anchors.fill: parent
+        onClicked: Quickshell.execDetached(["sh", "-c", "chromium --app=https://calendar.google.com"])
+      }
     }
 
     // adds space
@@ -177,5 +187,12 @@ PanelWindow {
       font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
     }
 
+    Rectangle { width: 2; height: 16; color: root.colMuted }
+    
+    Text {
+      text: Quickshell.Networking.Network.name
+      color: root.colCyan
+      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
+    }
   }
 }
