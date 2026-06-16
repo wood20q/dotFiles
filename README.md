@@ -11,13 +11,15 @@ After you clone the repo, you can use gnustow to put the files in their places b
 ### Applications Required
 
 1. hypr
-  1. hyprland
-  2. hyprpaper
-  3. hyprlock
-  4. hyprlauncher
+    1. hyprland
+    2. hyprpaper
+    3. hyprlock
+    4. hyprlauncher
+    5. hyprshutdown
 2. kitty
 3. dolphin
 4. zen
 5. chromium
 6. pavucontrol
 7. pulseaudio
+8. waybar or quickshell
