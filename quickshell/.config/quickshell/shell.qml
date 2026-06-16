@@ -9,7 +9,7 @@ PanelWindow {
   id: root
 
   // Colors
-  property color colBg: "#1a1b26"
+  property color colBg: "#b31a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
   property color colFg: "#a9b1d6"
   property color colMuted: "#444b6a"
   property color colCyan: "#0db9d7"
