@@ -29,8 +29,7 @@ PanelWindow {
   property string activeSubmap: ""
 
   // Networking
-  property string networkName: "unknown"
-
+  property string networkName: Network.name
 
   // Processes
   // CPU
@@ -103,22 +102,7 @@ PanelWindow {
     anchors.fill: parent
     anchors.margins: 8
 
-    Repeater {
-      model: 5
-
-      Text { 
-        property var ws: Hyprland.workspaces.values.find(w => w.id == index + 1)
-        property bool isActive: Hyprland.focusedWorkspace?.id == (index + 1)
-        text: index + 1
-        color: isActive ? colCyan : (ws ? colBlue : colMuted) // active : notEmpty : empty colors
-        font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-
-        MouseArea {
-          anchors.fill: parent
-          onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${index + 1} })`)
-        }
-      }
-    }
+    Workspaces {}
 
     // Bar between submap and workspaces and toggles visability
     Rectangle {
@@ -148,24 +132,7 @@ PanelWindow {
     
     /// Center
     // Clock
-    Text {
-      id: clock
-      color: root.colBlue
-      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-      text: Qt.formatDateTime(new Date(), "ddd, MMM dd | HH:mm")
-
-      Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: clock.text = Qt.formatDateTime(new Date(), "ddd, MMM dd | HH:mm")
-      }
-
-      MouseArea {
-        anchors.fill: parent
-        onClicked: Quickshell.execDetached(["sh", "-c", "chromium --app=https://calendar.google.com"])
-      }
-    }
+    Clock {}
 
     // adds space
     Item { Layout.fillWidth: true }
@@ -190,7 +157,7 @@ PanelWindow {
     Rectangle { width: 2; height: 16; color: root.colMuted }
     
     Text {
-      text: Quickshell.Networking.Network.name
+      text: networkName
       color: root.colCyan
       font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
     }
