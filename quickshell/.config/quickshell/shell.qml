@@ -1,10 +1,12 @@
 import Quickshell
-import Quickshell.Wayland
-import Quickshell.Io
-import Quickshell.Hyprland
+//import Quickshell.Wayland
+//import Quickshell.Io
+//import Quickshell.Hyprland
 import Quickshell.Networking
 import QtQuick
 import QtQuick.Layouts
+import "Modules"
+import "SystemData"
 
 PanelWindow {
   id: root
@@ -18,6 +20,7 @@ PanelWindow {
   property color colYellow: "#e0af68"
   property string fontFamily: "JetBrainsMono Nerd Font Propo"
   property int fontSize: 15
+  property int globalSpacing: 8
 
   // SystemData
   property int cpuUsage: 0
@@ -29,66 +32,10 @@ PanelWindow {
   property string activeSubmap: ""
 
   // Networking
-  property string networkName: Network.name
+  property string networkName: "WifiNetwork PlaceHolder"
 
-  // Processes
-  // CPU
-  Process {
-    id: cpuProc
-    command: ["sh", "-c", "head -1 /proc/stat"]
-    stdout: SplitParser {
-      onRead: data => {
-        if (!data) return
-        var p = data.trim().split(/\s+/)
-        var idle = parseInt(p[4]) + parseInt(p[5])
-        var total = p.slice(1,8).reduce((a, b) => a + parseInt(b), 0)
-        if (lastCPUTotal > 0) {
-          cpuUsage = Math.round(100 * (1 - (idle - lastCPUIdle) / (total - lastCPUTotal)))
-        }
-        lastCPUTotal = total
-        lastCPUIdle = idle
-      }
-    }
-    Component.onCompleted: running = true
-  }
-
-  // Memory
-  Process {
-    id: memProc
-    command: ["sh", "-c", "free | grep Mem"]
-    stdout: SplitParser {
-      onRead: data => {
-        if (!data) return
-        var parts = data.trim().split(/\s+/)
-        var total = parseInt(parts[1]) || 1
-        var used = parseInt(parts[2]) || 0
-        memUsage = Math.round(100 * used / total)
-      }
-    }
-    Component.onCompleted: running = true
-  }
-
-  // Timer
-  Timer {
-    interval: 2000 // 2000 ms ==> 2 sec
-    running: true
-    repeat: true
-    onTriggered: {
-      cpuProc.running = true
-      memProc.running = true
-    }
-  }
-
-  Connections {
-    target: Hyprland
-
-    // Listen to raw IPC events from socket2
-    function onRawEvent(event) {
-      if (event.name === "submap") {
-        root.activeSubmap = event.data
-      }
-    }
-  }
+  // Refreshing the system data using ./SystemData/RefreshData
+  RefreshData {}
 
   anchors.top: true
   anchors.left: true
@@ -96,68 +43,48 @@ PanelWindow {
   implicitHeight: 35
   color: colBg 
 
-  /// Left
-  // Workspascs
-  RowLayout {
-    anchors.fill: parent
-    anchors.margins: 8
 
+  RowLayout {
+    id: leftModules
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.leftMargin: globalSpacing
+    spacing: globalSpacing
+
+    /// Left
     Workspaces {}
 
-    // Bar between submap and workspaces and toggles visability
-    Rectangle {
-      id: workspaceBar
-      width: 0
-      height: 16
-      color: root.colMuted
-      
-      Timer {
-        interval: 10
-        running: true
-        repeat: true
-        onTriggered: workspaceBar.width = root.activeSubmap !== "" ? 2 : 0
-      }
-    }
-    
-    // Shows the active submap
-    Text {
-      id: submap
-      text: root.activeSubmap
-      color: root.colFg 
-      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-    }
+    Submap {}
 
-    // adds space
-    Item { Layout.fillWidth: true }
-    
+  }
+
+  RowLayout {
+    id: centerModules
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    spacing: globalSpacing
+
     /// Center
-    // Clock
     Clock {}
 
-    // adds space
-    Item { Layout.fillWidth: true }
+  }
+
+  RowLayout {
+    id: rightModules
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.rightMargin: globalSpacing
+    spacing: globalSpacing
 
     /// Right
-    // CPU
-    Text {
-      text: "CPU: " + cpuUsage + "%"
-      color: root.colYellow
-      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-    }
+    CpuUsage {}
+    Spacer {}
 
-    Rectangle { width: 2; height: 16; color: root.colMuted }
-   
-    // Mem
-    Text {
-      text: "Mem: " + memUsage + "%"
-      color: root.colCyan
-      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-    }
+    MemUsage {}
+    Spacer {}
 
-    Rectangle { width: 2; height: 16; color: root.colMuted }
-    
     Text {
-      text: networkName
+      text: root.networkName
       color: root.colCyan
       font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
     }
