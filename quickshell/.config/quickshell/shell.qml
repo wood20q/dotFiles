@@ -12,7 +12,7 @@ PanelWindow {
   id: root
 
   // Colors
-  property color colBg: "#b31a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
+  property color colBg: "#ff1a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
   property color colFg: "#a9b1d6"
   property color colMuted: "#444b6a"
   property color colCyan: "#0db9d7"
@@ -34,59 +34,57 @@ PanelWindow {
   // Networking
   property string networkName: "WifiNetwork PlaceHolder"
 
-  // Refreshing the system data using ./SystemData/RefreshData
-  RefreshData {}
-
+  // Starting properties for the bar itself
   anchors.top: true
   anchors.left: true
   anchors.right: true
   implicitHeight: 35
-  color: colBg 
+  color: "transparent"
 
+  // Refreshing the system data using ./SystemData/RefreshData
+  RefreshData {}
 
-  RowLayout {
-    id: leftModules
+  Rectangle {
+    id: leftGroup
+    color: colBg
+
     anchors.left: parent.left
     anchors.verticalCenter: parent.verticalCenter
     anchors.leftMargin: globalSpacing
-    spacing: globalSpacing
 
-    /// Left
-    Workspaces {}
-
-    Submap {}
-
+    width: leftModules.implicitWidth + (globalSpacing * 2)
+    height: parent.height
+    radius: 15
+    
+    LeftModules { id: leftModules }
   }
 
-  RowLayout {
-    id: centerModules
+  Rectangle {
+    id: centerGroup
+    color: colBg
+
     anchors.verticalCenter: parent.verticalCenter
     anchors.horizontalCenter: parent.horizontalCenter
-    spacing: globalSpacing
 
-    /// Center
-    Clock {}
+    width: centerModules.implicitWidth + (globalSpacing * 2)
+    height: parent.height
+    radius: 15
 
+    CenterModules { id: centerModules }
   }
 
-  RowLayout {
-    id: rightModules
+  Rectangle {
+    id: rightGroup
+    color: colBg
+
     anchors.right: parent.right
     anchors.verticalCenter: parent.verticalCenter
     anchors.rightMargin: globalSpacing
-    spacing: globalSpacing
 
-    /// Right
-    CpuUsage {}
-    Spacer {}
+    width: rightModules.implicitWidth + (globalSpacing * 2)
+    height: parent.height
+    radius: 15
 
-    MemUsage {}
-    Spacer {}
-
-    Text {
-      text: root.networkName
-      color: root.colCyan
-      font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-    }
+    RightModules { id: rightModules }
   }
-}
+} 

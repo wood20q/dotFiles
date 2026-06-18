@@ -17,14 +17,9 @@ RowLayout {
     }
   }
 
-  Spacer { id: spacer }
+  Spacer {}
 
-  Timer {
-    interval: 10
-    running: true
-    repeat: true
-    onTriggered: spacer.width = root.activeSubmap !== "" ? spacer.ogWidth : 0
-  }
+
 
   // Shows the active submap
   Text {
