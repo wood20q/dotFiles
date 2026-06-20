@@ -87,12 +87,6 @@ hl.bind(secondMod .. " + P", function()
   hl.dispatch(hl.dsp.submap("⏻"))
 end)
 
-hl.bind(mainMod .. " + U", hl.dsp.submap("Test"))
-
-hl.define_submap("Test", function()
-  hl.bind("escape", hl.dsp.submap("reset"))
-end)
-
 hl.define_submap("⏻", function()
   -- suspend
   hl.bind("s", function()
