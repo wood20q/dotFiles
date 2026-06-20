@@ -26,4 +26,9 @@ Item {
             }
         }
     }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: root.powerVisable = !root.powerVisable
+    }
 }

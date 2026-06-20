@@ -82,7 +82,16 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 
-hl.bind(secondMod .. " + P", hl.dsp.submap("⏻"))
+hl.bind(secondMod .. " + P", function()
+  hl.dispatch(hl.dsp.exec_cmd("qs ipc call powerMenu view"))
+  hl.dispatch(hl.dsp.submap("⏻"))
+end)
+
+hl.bind(mainMod .. " + U", hl.dsp.submap("Test"))
+
+hl.define_submap("Test", function()
+  hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 hl.define_submap("⏻", function()
   -- suspend
@@ -98,8 +107,11 @@ hl.define_submap("⏻", function()
   hl.bind("r", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'systemctl reboot'"))
 
   -- logout
-  hl.bind("l", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'loginctl terminate-user $USER'"))
+  hl.bind("l", hl.dsp.exec_cmd("hyprshutdown"))
 
   -- reset
-  hl.bind("escape", hl.dsp.submap("reset"))
+  hl.bind("escape", function()
+    hl.dispatch(hl.dsp.exec_cmd("qs ipc call powerMenu hide"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
 end)

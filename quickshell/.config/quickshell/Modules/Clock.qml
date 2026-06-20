@@ -5,7 +5,7 @@ Text {
   id: clockText
   color: root.colBlue
   font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-  text: Qt.formatDateTime(clock.date, "ddd, MMM dd | hh:mm ap")
+  text: Qt.formatDateTime(clock.date, "MMM | hh:mm ap | dd")
 
   MouseArea {
     anchors.fill: parent

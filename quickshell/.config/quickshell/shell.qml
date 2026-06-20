@@ -1,12 +1,9 @@
 import Quickshell
-//import Quickshell.Wayland
-//import Quickshell.Io
-//import Quickshell.Hyprland
-import Quickshell.Networking
 import QtQuick
 import QtQuick.Layouts
 import "Modules"
 import "SystemData"
+import "Menus"
 
 PanelWindow {
   id: root
@@ -15,9 +12,13 @@ PanelWindow {
   property color colBg: "#ff1a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
   property color colFg: "#a9b1d6"
   property color colMuted: "#444b6a"
-  property color colCyan: "#0db9d7"
+  property color colRed: '#e26161'
+  property color colOrange: '#e2b243'
+  property color colYellow: '#f0e76e'
+  property color colGreen: '#88d97b'
   property color colBlue: "#7aa2f7"
-  property color colYellow: "#e0af68"
+  property color colCyan: "#0db9d7"
+  property color colPurple: '#ae7ff5'
   property string fontFamily: "JetBrainsMono Nerd Font Propo"
   property int fontSize: 15
   property int globalSpacing: 8
@@ -33,6 +34,9 @@ PanelWindow {
 
   // Networking
   property string networkName: "WifiNetwork PlaceHolder"
+
+  // Popup Visability
+  property bool powerVisable: false
 
   // Starting properties for the bar itself
   anchors.top: true
@@ -58,6 +62,8 @@ PanelWindow {
     
     LeftModules { id: leftModules }
   }
+
+  PowerMenu { visible: powerVisable }
 
   Rectangle {
     id: centerGroup

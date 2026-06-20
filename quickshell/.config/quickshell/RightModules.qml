@@ -16,9 +16,5 @@ RowLayout {
   MemUsage {}
   Spacer {}
 
-  Text {
-    text: root.networkName
-    color: root.colCyan
-    font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
-  }
+  Network {}
 }
