@@ -90,6 +90,8 @@ end)
 hl.define_submap("⏻", function()
   -- suspend
   hl.bind("s", function()
+    hl.dispatch(hl.dsp.exec_cmd("qs ipc call powerMenu hide"))
+    hl.dispatch(hl.dsp.exec_cmd("hyprlock"))
     hl.dispatch(hl.dsp.exec_cmd("systemctl suspend"))
     hl.dispatch(hl.dsp.submap("reset"))
   end)

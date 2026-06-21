@@ -59,7 +59,7 @@ PanelWindow {
                 size: powerMenu.size
                 hoverColor: root.colOrange
                 borderSize: powerMenu.borderSize
-                command: `hyprctl dispatch "hl.dsp.submap('reset')" && systemctl suspend`
+                command: `qs ipc call powerMenu hide && hyprctl dispatch "hl.dsp.submap('reset')"  && systemctl suspend && hyprlock`
             }
             Button {
                 id: lock
@@ -67,7 +67,7 @@ PanelWindow {
                 size: powerMenu.size
                 hoverColor: root.colYellow
                 borderSize: powerMenu.borderSize
-                command: "hyprlock"
+                command: "qs ipc call powerMenu hide && hyprlock"
             }
             Button {
                 id: logout
