@@ -24,3 +24,4 @@ After you clone the repo, you can use gnustow to put the files in their places b
 7. pulseaudio & Pipewire
 8. waybar or quickshell
 9. networkmanager
+10. fzf
