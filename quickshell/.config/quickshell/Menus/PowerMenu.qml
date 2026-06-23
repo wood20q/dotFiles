@@ -2,11 +2,12 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
+import ".."
 
 PanelWindow {
     id: powerMenu
     property int size: 50
-    property color boxColor: colBlue
+    property color boxColor: Colors.blue
     property int cornerRadius: size/2
     property int borderSize: 3
 
@@ -29,7 +30,7 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: root.colBg
+        color: Colors.base
         radius: cornerRadius
 
         RowLayout {
@@ -40,40 +41,45 @@ PanelWindow {
             Button {
                 id: power
                 text: ""
+                boxColor: powerMenu.boxColor
                 size: powerMenu.size
                 borderSize: powerMenu.borderSize
-                hoverColor: root.colRed
+                hoverColor: Colors.red
                 command: "hyprshutdown --post-cmd 'systemctl poweroff'"
             }
             Button {
                 id: restart
                 text: ""
+                boxColor: powerMenu.boxColor
                 size: powerMenu.size
-                hoverColor: root.colGreen
+                hoverColor: Colors.green
                 borderSize: powerMenu.borderSize
                 command: "hyprshutdown --post-cmd 'systemctl reboot'"
             }
             Button {
                 id: suspend
                 text: "󰍷"
+                boxColor: powerMenu.boxColor
                 size: powerMenu.size
-                hoverColor: root.colOrange
+                hoverColor: Colors.peach
                 borderSize: powerMenu.borderSize
                 command: `qs ipc call powerMenu hide && hyprctl dispatch "hl.dsp.submap('reset')"  && systemctl suspend && hyprlock`
             }
             Button {
                 id: lock
                 text: "󱅟"
+                boxColor: powerMenu.boxColor
                 size: powerMenu.size
-                hoverColor: root.colYellow
+                hoverColor: Colors.yellow
                 borderSize: powerMenu.borderSize
                 command: "qs ipc call powerMenu hide && hyprlock"
             }
             Button {
                 id: logout
                 text: "󰗽"
+                boxColor: powerMenu.boxColor
                 size: powerMenu.size
-                hoverColor: root.colPurple
+                hoverColor: Colors.mauve
                 borderSize: powerMenu.borderSize
                 command: "hyprshutdown"
             }

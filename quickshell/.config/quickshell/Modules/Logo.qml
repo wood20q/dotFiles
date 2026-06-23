@@ -1,10 +1,11 @@
 import QtQuick
 import QtQuick.Shapes
+import ".."
 
 Item {
     id: logo
 
-    property color color: "#ffffff"
+    property color color: Colors.text
     property color border: "transparent"
     property int size: root.fontSize + 5
 

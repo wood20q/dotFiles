@@ -1,5 +1,5 @@
 import QtQuick
-
+import ".."
 
 Rectangle {
   id: spacer
@@ -7,5 +7,5 @@ Rectangle {
 
   width: ogWidth
   height: 16
-  color: root.colMuted
+  color: Colors.surface2
 }

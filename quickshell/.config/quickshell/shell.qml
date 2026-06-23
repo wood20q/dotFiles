@@ -4,23 +4,24 @@ import QtQuick.Layouts
 import "Modules"
 import "SystemData"
 import "Menus"
+import "."
 
 PanelWindow {
   id: root
 
   // Colors
-  property color colBg: "#ff1a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
-  property color colFg: "#a9b1d6"
-  property color colMuted: "#444b6a"
-  property color colRed: '#e26161'
-  property color colOrange: '#e2b243'
-  property color colYellow: '#f0e76e'
-  property color colGreen: '#88d97b'
-  property color colBlue: "#7aa2f7"
-  property color colCyan: "#0db9d7"
-  property color colPurple: '#ae7ff5'
+  // property color colBg: "#ff1a1b26" // AARRGGBB => AA: Alpha | RR: Red | GG: Green | BB: BLue
+  // property color colFg: "#a9b1d6"
+  // property color colMuted: "#444b6a"
+  // property color colRed: '#e26161'
+  // property color colOrange: '#e2b243'
+  // property color colYellow: '#f0e76e'
+  // property color colGreen: '#88d97b'
+  // property color colBlue: "#7aa2f7"
+  // property color colCyan: "#0db9d7"
+  // property color colPurple: '#ae7ff5'
   property string fontFamily: "JetBrainsMono Nerd Font Propo"
-  property int fontSize: 15
+  property int fontSize: 18
   property int globalSpacing: 8
 
   // SystemData
@@ -32,9 +33,6 @@ PanelWindow {
   // submap vars
   property string activeSubmap: ""
 
-  // Networking
-  property string networkName: "WifiNetwork PlaceHolder"
-
   // Popup Visability
   property bool powerVisable: false
 
@@ -42,7 +40,7 @@ PanelWindow {
   anchors.top: true
   anchors.left: true
   anchors.right: true
-  implicitHeight: 35
+  implicitHeight: fontSize * 2
   color: "transparent"
 
   // Refreshing the system data using ./SystemData/RefreshData
@@ -50,7 +48,7 @@ PanelWindow {
 
   Rectangle {
     id: leftGroup
-    color: colBg
+    color: Colors.base
 
     anchors.left: parent.left
     anchors.verticalCenter: parent.verticalCenter
@@ -67,7 +65,7 @@ PanelWindow {
 
   Rectangle {
     id: centerGroup
-    color: colBg
+    color: Colors.base
 
     anchors.verticalCenter: parent.verticalCenter
     anchors.horizontalCenter: parent.horizontalCenter
@@ -81,7 +79,7 @@ PanelWindow {
 
   Rectangle {
     id: rightGroup
-    color: colBg
+    color: Colors.base
 
     anchors.right: parent.right
     anchors.verticalCenter: parent.verticalCenter

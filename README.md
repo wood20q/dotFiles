@@ -21,5 +21,6 @@ After you clone the repo, you can use gnustow to put the files in their places b
 4. zen
 5. chromium
 6. pavucontrol
-7. pulseaudio
+7. pulseaudio & Pipewire
 8. waybar or quickshell
+9. networkmanager

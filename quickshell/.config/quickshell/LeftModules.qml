@@ -2,6 +2,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "Modules"
+import "."
 
 RowLayout {
   id: leftModules
@@ -10,7 +11,7 @@ RowLayout {
 
   Logo {
   id: logo
-  color: root.colMuted
+  color: Colors.surface2
   border: logo.color
   }
   

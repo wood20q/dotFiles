@@ -16,5 +16,11 @@ RowLayout {
   MemUsage {}
   Spacer {}
 
+  Battery {id: battery }//; visible: battery.battery.type != 0 }
+  Spacer { }//visible: battery.battery.type != 0 }
+
+  Volume {}
+  Spacer{}
+
   Network {}
 }

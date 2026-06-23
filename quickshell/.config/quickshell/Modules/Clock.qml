@@ -1,9 +1,10 @@
 import Quickshell
 import QtQuick
+import ".."
 
 Text {
   id: clockText
-  color: root.colBlue
+  color: Colors.blue
   font { pixelSize: root.fontSize; bold: true; family: root.fontFamily }
   text: Qt.formatDateTime(clock.date, "MMM | hh:mm ap | dd")
 

@@ -1,12 +1,13 @@
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
+import ".."
 
 RowLayout {
   id: subMap
   spacing: root.globalSpacing
 
-  property color color: root.colFg
+  property color color: Colors.text
   
   Connections {
     target: Hyprland
@@ -17,9 +18,9 @@ RowLayout {
         root.activeSubmap = event.data
 
         if (event.data == "⏻") {
-          color = root.colRed
+          color = Colors.red
         } else {
-          color = root.colFg
+          color = Colors.text
         }
         
       }
