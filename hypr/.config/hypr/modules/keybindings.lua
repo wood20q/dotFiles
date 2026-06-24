@@ -4,7 +4,7 @@
 
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "dolphin"
+local fileManager = "kitty --title=yazi sh -c 'yazi'"
 local menu        = "hyprlauncher"
 local browser     = "zen"
 
