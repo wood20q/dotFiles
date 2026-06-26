@@ -1,30 +1,32 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
-import ".."
+import QtQuick.Controls
+import "../.."
 
 Rectangle {
     id: button
-    property int size: 50
+    property int squareSize: 50
     property color boxColor: Colors.blue
     property color hoverColor: Colors.sky
     property color filledTextColor: Colors.text
     property int borderSize: 0
-
-    property int cornerRadius: button.size/2
-    property int fontSize: button.size/2
     property string text: "n/a"
-    property bool hovered: false
+
+    property int cornerRadius: Math.min(button.height, button.width)/2
+    property int fontSize: Math.min(button.height, button.width)/2
     property string command: 'notify-send "error" "set command for button"'
     property int animationtime: 150
+    // property int height: squareSize
+    // property int width: squareSize
 
-    width: button.size
-    height: button.size
-    color: button.borderSize != 0? "transparent" : (button.hovered? button.hoverColor : button.boxColor)
+    width: button.squareSize
+    height: button.squareSize
+    color: button.borderSize != 0? "transparent" : (buttonArea.hovered? button.hoverColor : button.boxColor)
     radius: button.cornerRadius
     border {
         width: button.borderSize >0? button.borderSize : 0
-        color: button.hovered? button.hoverColor : button.boxColor
+        color: buttonArea.hovered? button.hoverColor : button.boxColor
 
         Behavior on color {
             ColorAnimation { duration: button.animationtime }
@@ -35,18 +37,16 @@ Rectangle {
         text: button.text
         font { pixelSize: fontSize; family: root.fontFamily }
         anchors.centerIn: parent
-        color: button.borderSize == 0? button.filledTextColor : (button.hovered? button.hoverColor : button.boxColor)
+        color: button.borderSize == 0? button.filledTextColor : (buttonArea.hovered? button.hoverColor : button.boxColor)
         
         Behavior on color {
             ColorAnimation { duration: button.animationtime }
         }
     }
 
-    MouseArea {
+    AbstractButton {
+        id: buttonArea
         anchors.fill: parent
-        hoverEnabled: true
-        onEntered: hovered = true
-        onExited: hovered = false
         onClicked: Quickshell.execDetached(["sh", "-c", button.command])
     }
 

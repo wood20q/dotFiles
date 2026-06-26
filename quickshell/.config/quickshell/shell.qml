@@ -35,6 +35,7 @@ PanelWindow {
 
   // Popup Visability
   property bool powerVisable: false
+  property bool controlCenterVisable: false
 
   // Starting properties for the bar itself
   anchors.top: true
@@ -45,6 +46,9 @@ PanelWindow {
 
   // Refreshing the system data using ./SystemData/RefreshData
   RefreshData {}
+
+  PowerMenu { visible: powerVisable }
+  ControlCenter { id: controlCenter; visible: controlCenterVisable }
 
   Rectangle {
     id: leftGroup
@@ -61,7 +65,6 @@ PanelWindow {
     LeftModules { id: leftModules }
   }
 
-  PowerMenu { visible: powerVisable }
 
   Rectangle {
     id: centerGroup

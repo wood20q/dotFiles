@@ -16,11 +16,14 @@ RowLayout {
   MemUsage {}
   Spacer {}
 
-  Battery {id: battery }//; visible: battery.battery.type != 0 }
-  Spacer { }//visible: battery.battery.type != 0 }
+  Battery {id: battery; visible: battery.battery.type != 0 }
+  Spacer { visible: battery.battery.type != 0 }
 
   Volume {}
   Spacer{}
 
-  Network {}
+  Network { id: network }
+  Spacer {}
+
+  ControlCenterIcon {}
 }
