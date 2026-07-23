@@ -1,7 +1,7 @@
 import Quickshell
 import Quickshell.Services.Pipewire
 import QtQuick
-
+             
 pragma Singleton
 
 Item {

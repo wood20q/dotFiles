@@ -6,7 +6,7 @@
 local terminal    = "kitty"
 local fileManager = "kitty --title=yazi sh -c 'yazi'"
 local menu        = "hyprlauncher"
-local browser     = "zen"
+local browser     = "zen-browser"
 
 
 ---------------------

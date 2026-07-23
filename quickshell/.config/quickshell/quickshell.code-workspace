@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "quickshell",
+		"path": "."
+	},
+	{
+		"name": "quickshell",
+		"path": "../../../../.config/quickshell"
+	}
+],
+  "settings": {}
+}
