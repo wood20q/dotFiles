@@ -9,7 +9,7 @@ RowLayout {
   property color highlightColor: Colors.sky
 
   Repeater {
-    model: 5
+    model: 10
 
     Rectangle {
       id: box
