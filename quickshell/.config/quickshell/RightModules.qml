@@ -2,7 +2,7 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import "Modules"
-
+import "Services"
 
 RowLayout {
   id: rightModules
@@ -16,8 +16,8 @@ RowLayout {
   MemUsage {}
   Spacer {}
 
-  Battery {id: battery; visible: battery.battery.type != 0 }
-  Spacer { visible: battery.battery.type != 0 }
+  Battery { visible: BatteryStatus.level != 0 }
+  Spacer { visible: BatteryStatus.level != 0 }
 
   Volume {}
   Spacer{}
