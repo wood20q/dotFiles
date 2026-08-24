@@ -136,6 +136,25 @@ hl.define_submap("󰄀", function()
     hl.dispatch(hl.dsp.submap("reset"))
   end)
 
+
+  -- region without saving
+  hl.bind(mainMod .. " + R", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- Window without saving
+  hl.bind(mainMod .. " + W", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window -m active --clipboard-only"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- Monitor without saving
+  hl.bind(mainMod .. " + M", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m output -m active --clipboard-only"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
   -- reset
   hl.bind("escape", hl.dsp.submap("reset"))
 end)
