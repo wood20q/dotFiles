@@ -31,7 +31,7 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Lock the computer
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
-hl.bind("code:194", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("XF86Launch7", hl.dsp.exec_cmd("hyprlock"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -82,7 +82,7 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
-
+-- Power Binds
 hl.bind(secondMod .. " + P", function()
   hl.dispatch(hl.dsp.exec_cmd("qs ipc call powerMenu view"))
   hl.dispatch(hl.dsp.submap("⏻"))
@@ -112,3 +112,34 @@ hl.define_submap("⏻", function()
     hl.dispatch(hl.dsp.submap("reset"))
   end)
 end)
+
+-- Screenshot binds
+hl.bind(secondMod .. " + C", hl.dsp.submap("󰄀"))
+
+hl.define_submap("󰄀", function()
+
+  -- region
+  hl.bind("R", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m region"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- Window
+  hl.bind("W", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m window -m active"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- Monitor
+  hl.bind("M", function()
+    hl.dispatch(hl.dsp.exec_cmd("hyprshot -m output -m active"))
+    hl.dispatch(hl.dsp.submap("reset"))
+  end)
+
+  -- reset
+  hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+
+
+
