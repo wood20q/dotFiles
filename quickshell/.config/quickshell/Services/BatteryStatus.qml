@@ -6,8 +6,8 @@ pragma Singleton
 
 Item {
     property var battery: UPower.displayDevice
-    property bool charging: battery.state === UPowerDeviceState.charging
-    readonly property int level: Math.round(battery.percent * 100)
+    property bool charging: battery.state === UPowerDeviceState.Charging
+    readonly property int level: Math.round(battery.percentage * 100)
 
     readonly property string icon: {
     console.log(`battery: ${battery} | charging: ${charging} | level: ${level} | type: ${battery.type}`)
