@@ -115,6 +115,7 @@ end)
 
 -- Screenshot binds
 hl.bind(secondMod .. " + C", hl.dsp.submap("󰄀"))
+hl.bind("Print", hl.dsp.submap("󰄀"))
 
 hl.define_submap("󰄀", function()
 
