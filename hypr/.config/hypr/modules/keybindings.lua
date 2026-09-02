@@ -32,6 +32,7 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 -- Lock the computer
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("XF86Launch7", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("XF86AudioMedia", hl.dsp.exec_cmd("hyprlock"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
